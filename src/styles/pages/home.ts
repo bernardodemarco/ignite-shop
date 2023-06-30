@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { styled } from '..'
 
 export const HomeContainer = styled('main', {
@@ -8,7 +9,7 @@ export const HomeContainer = styled('main', {
   minHeight: 656
 })
 
-export const Product = styled('a', {
+export const Product = styled(Link, {
   minWidth: '32.5rem',
 
   position: 'relative',
@@ -44,7 +45,8 @@ export const Product = styled('a', {
     transition: 'transform 0.2s ease-in-out',
 
     strong: {
-      fontSize: '$lg'
+      fontSize: '$lg',
+      color: '$gray100'
     },
 
     span: {
