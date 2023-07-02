@@ -4,9 +4,10 @@ import { styled } from '..'
 export const HomeContainer = styled('main', {
   display: 'flex',
   marginLeft: 'auto',
+  marginRight: '0.5rem',
   width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
-  minHeight: 656
+  maxWidth: 'calc(100vw - ((100vw - 1300px) / 2))',
+  minHeight: 520
 })
 
 export const Product = styled(Link, {
@@ -33,7 +34,7 @@ export const Product = styled(Link, {
     left: '0.25rem',
     right: '0.25rem',
     borderRadius: 6,
-    padding: '2rem',
+    padding: '1.25rem',
 
     display: 'flex',
     justifyContent: 'space-between',
