@@ -21,7 +21,9 @@ export const CartContainer = styled('section', {
   bottom: 0,
   right: 0,
 
+  overflowY: 'scroll',
   width: '30rem',
+  maxWidth: '100vw',
   backgroundColor: '$gray800',
   padding: '4.5rem 3rem 3rem 3rem',
 
@@ -33,6 +35,10 @@ export const CartContainer = styled('section', {
     right: '1.5rem',
     cursor: 'pointer',
     color: '#8D8D99',
+
+    '&:hover': {
+      opacity: 0.7,
+    },
   },
 
   h1: {
@@ -104,6 +110,10 @@ export const CartContainer = styled('section', {
   '& > div:nth-of-type(1)': {
     marginTop: 'auto',
   },
+
+  '@media screen and (max-width: 380px)': {
+    padding: '1.75rem 1rem'
+  }
 })
 
 

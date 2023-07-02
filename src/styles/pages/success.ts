@@ -7,6 +7,7 @@ export const SuccessContainer = styled('main', {
   justifyContent: 'center',
   margin: '0 auto',
   height: 512,
+  padding: '0 1rem 1rem',
 
   h1: {
     fontSize: '$2xl',
@@ -33,13 +34,22 @@ export const SuccessContainer = styled('main', {
     '&:hover': {
       color: '$green300',
     }
-  }
+  },
+
+  '@media screen and (max-width: 360px)': {
+    height: 'fit-content',
+  },
 })
 
 export const ImagesWrapper = styled('div', {
-  display: 'inline-flex',
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+
+  '@media screen and (max-width: 360px)': {
+    flexDirection: 'column',
+    gap: '0.5rem',
+  },
 })
 
 export const ImageContainer = styled('div', {
@@ -61,5 +71,9 @@ export const ImageContainer = styled('div', {
 
   img: {
     'object-fit': 'cover',
+  },
+
+  '@media screen and (max-width: 360px)': {
+    margin: 0,
   },
 })

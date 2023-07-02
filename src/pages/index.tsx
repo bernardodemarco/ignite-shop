@@ -26,6 +26,13 @@ export default function Home({ products }: HomeProps) {
     slides: {
       perView: 'auto',
       spacing: 48
+    },
+    breakpoints: {
+      '(max-width: 612px)': {
+        slides: {
+          spacing: 30
+        }
+      }
     }
   })
 
@@ -44,7 +51,13 @@ export default function Home({ products }: HomeProps) {
               key={product.id}
               prefetch={false}
             >
-              <Image src={product.imageUrl} width={520} height={480} alt='' />
+              <Image
+                src={product.imageUrl}
+                width={520}
+                height={480}
+                alt=''
+                priority={true}
+              />
               <footer>
                 <div>
                   <strong>{product.name}</strong>

@@ -7,8 +7,10 @@ export const HomeContainer = styled('main', {
   marginLeft: 'auto',
   marginRight: '0.5rem',
   width: '100%',
+  paddingLeft: '1rem',
+  paddingBottom: '1rem',
   maxWidth: 'calc(100vw - ((100vw - 1300px) / 2))',
-  minHeight: 520
+  minHeight: 536,
 })
 
 export const Product = styled(Link, {
@@ -68,7 +70,11 @@ export const Product = styled(Link, {
     footer: {
       transform: 'translateY(0%)',
     }
-  }
+  },
+
+  '@media screen and (max-width: 612px)': {
+    minWidth: '90vw',
+  },
 })
 
 export const BagContainer = styled(IconContainer, {
