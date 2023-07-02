@@ -4,10 +4,12 @@ import { HeaderContainer, IconContainer } from "@/styles/components/header";
 import { Handbag } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Cart } from "./Cart";
+import { useRouter } from "next/router";
 
 export function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false)
   const number = 4
+  const { pathname } = useRouter()
 
   function handleOpenCart() {
     setIsCartVisible(true)
@@ -17,16 +19,18 @@ export function Header() {
     setIsCartVisible(false)
   }
 
+  const isIconVisible = pathname !== '/success'
+
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer isIconVisible={isIconVisible}>
         <Image src={logoImg} alt="" />
         <IconContainer onClick={handleOpenCart}>
           <Handbag size={24} weight="bold" />
           {number > 0 && <span>{number}</span>}
         </IconContainer>
       </HeaderContainer>
-      {isCartVisible && <Cart onCloseCart={onCloseCart} />}
+      <Cart onCloseCart={onCloseCart} isCartVisible={isCartVisible} />
     </>
   )
 }

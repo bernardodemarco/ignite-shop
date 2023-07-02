@@ -8,7 +8,24 @@ export const HeaderContainer = styled('header', {
 
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+
+  variants: {
+    isIconVisible: {
+      true: {
+        justifyContent: 'space-between',
+      },
+      false: {
+        justifyContent: 'center',
+        '& > div': {
+          display: 'none'
+        }
+      }
+    }
+  },
+
+  defaultVariants: {
+    isIconVisible: true,
+  }
 })
 
 export const IconContainer = styled('div', {

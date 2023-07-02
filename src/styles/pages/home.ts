@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { styled } from '..'
+import { IconContainer } from '../components/header'
 
 export const HomeContainer = styled('main', {
   display: 'flex',
@@ -45,15 +46,21 @@ export const Product = styled(Link, {
     transform: 'translateY(110%)',
     transition: 'transform 0.2s ease-in-out',
 
-    strong: {
-      fontSize: '$lg',
-      color: '$gray100'
-    },
+    '& > div': {
+      display: 'flex',
+      flexDirection: 'column',
 
-    span: {
-      fontSize: '$xl',
-      fontWeight: 'bold',
-      color: '$green300',
+      strong: {
+        fontSize: '$md',
+        color: '$gray100',
+        marginBottom: '0.5rem'
+      },
+
+      span: {
+        fontSize: '$lg',
+        fontWeight: 700,
+        color: '$green300',
+      },
     },
   },
 
@@ -61,5 +68,13 @@ export const Product = styled(Link, {
     footer: {
       transform: 'translateY(0%)',
     }
+  }
+})
+
+export const BagContainer = styled(IconContainer, {
+  backgroundColor: '$green500',
+
+  svg: {
+    color: 'white'
   }
 })

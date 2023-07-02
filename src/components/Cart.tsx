@@ -1,34 +1,35 @@
-import { CartContainer, Product, Text } from "@/styles/components/cart";
+import { CartContainer, ImageContainer, Product, ProductDetails } from "@/styles/components/cart";
 import { X } from '@phosphor-icons/react'
 
 interface CartProps {
   onCloseCart: () => void
+  isCartVisible: boolean
 }
 
-export function Cart({ onCloseCart }: CartProps) {
+export function Cart({ onCloseCart, isCartVisible }: CartProps) {
   function handleCloseCart() {
     onCloseCart()
   }
 
   return (
-    <CartContainer>
+    <CartContainer isCartVisible={isCartVisible}>
       <X onClick={handleCloseCart} size={24} weight="bold" />
-      <Text
-        as="h1"
-        weight="bold"
-        lineHeight="large"
-        size="medium"
-        color="gray100"
-      >
-        Sacola de compras
-      </Text>
+      <h1>Sacola de compras</h1>
       <Product>
-        <div></div>
-        <div>
-          <h3></h3>
-          <strong></strong>
-          <span></span>
-        </div>
+        <ImageContainer></ImageContainer>
+        <ProductDetails>
+          <h3>Camiseta Beyond the Limits</h3>
+          <strong>R$ 79,90</strong>
+          <span>Remover</span>
+        </ProductDetails>
+      </Product>
+      <Product>
+        <ImageContainer></ImageContainer>
+        <ProductDetails>
+          <h3>Camiseta Beyond the Limits</h3>
+          <strong>R$ 79,90</strong>
+          <span>Remover</span>
+        </ProductDetails>
       </Product>
       <div>
         <span>Quantidade</span>
@@ -38,7 +39,6 @@ export function Cart({ onCloseCart }: CartProps) {
         <strong>Valor total</strong>
         <strong>R$ 270,00</strong>
       </div>
-
       <button>Finalizar compra</button>
     </CartContainer>
   )

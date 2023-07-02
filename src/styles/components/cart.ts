@@ -1,6 +1,20 @@
 import { styled } from "@stitches/react";
 
 export const CartContainer = styled('section', {
+  variants: {
+    isCartVisible: {
+      true: {
+        transform: 'translateX(0)'
+      },
+      false: {
+        transform: 'translateX(110%)'
+      },
+    },
+  },
+
+  display: 'flex',
+  flexDirection: 'column',
+
   position: 'fixed',
   zIndex: 2,
   top: 0,
@@ -10,6 +24,8 @@ export const CartContainer = styled('section', {
   width: '30rem',
   backgroundColor: '$gray800',
   padding: '4.5rem 3rem 3rem 3rem',
+
+  transition: 'transform 0.5s cubic-bezier(0.950, -0.005, 0.300, 0.995)',
 
   svg: {
     position: 'absolute',
@@ -24,18 +40,50 @@ export const CartContainer = styled('section', {
     fontWeight: 700,
     lineHeight: 1.6,
     color: '$gray100',
+    marginBottom: '2rem',
   },
 
-  div: {
+  button: {
+    width: '100%',
+    padding: '1.25rem 2rem',
+    marginTop: '3.56rem',
+    border: 0,
+    borderRadius: 8,
+    backgroundColor: '$green500',
+
+    fontSize: '$md',
+    fontWeight: 700,
+    lineHeight: 1.6,
+    color: '$white',
+    cursor: 'pointer',
+
+    '&:not(:disabled):hover': {
+      backgroundColor: '$green300'
+    },
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed'
+    },
+  },
+
+  '& > div': {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
 
-    span: {
+    'span:nth-of-type(1)': {
       fontSize: '$sm',
       fontWeight: 400,
       lineHeight: 1.6,
       color: '$gray100',
+    },
+
+    'span:nth-of-type(2)': {
+      fontSize: '$md',
+      fontWeight: 400,
+      lineHeight: 1.6,
+      color: '$gray300',
     },
 
     'strong:nth-of-type(1)': {
@@ -51,52 +99,68 @@ export const CartContainer = styled('section', {
       lineHeight: 1.4,
       color: '$gray100',
     },
-  }
+  },
+
+  '& > div:nth-of-type(1)': {
+    marginTop: 'auto',
+  },
 })
 
-export const Text = styled('span', {
-  variants: {
-    weight: {
-      bold: {
-        fontWeight: 700,
-      },
-      light: {
-        fontWeight: 400,
-      }
-    },
-    size: {
-      small: {
-        fontSize: '$sm'
-      },
-      medium: {
-        fontSize: '$md'
-      },
-      large: {
-        fontSize: '$xl'
-      },
-    },
-    color: {
-      'gray100': {
-        color: '$gray100',
-      },
-      'gray300': {
-        color: '$gray300',
-      },
-      green: {
-        color: '$green500',
-      },
-    },
-    lineHeight: {
-      small: {
-        lineHeight: 1.4,
-      },
-      large: {
-        lineHeight: 1.6,
-      },
-    }
-  }
-})
 
 export const Product = styled('article', {
+  width: '100%',
+  marginBottom: '1.45rem',
+  display: 'grid',
+  gridTemplateColumns: '6.37138rem 1fr',
+  alignItems: 'stretch',
+  gap: '1.25rem',
+})
 
+export const ImageContainer = styled('div', {
+  width: '100%',
+  maxWidth: '6.37138rem',
+  height: '5.8125rem',
+  background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
+  borderRadius: 8,
+  padding: '0rem 0.22356rem',
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  img: {
+    objectFit: 'cover',
+  },
+})
+
+export const ProductDetails = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+
+  h3: {
+    fontSize: '$md',
+    fontWeight: 400,
+    lineHeight: 1.6,
+    color: '$gray300',
+  },
+
+  strong: {
+    fontSize: '$md',
+    fontWeight: 700,
+    lineHeight: 1.6,
+    color: '$gray100',
+  },
+
+  span: {
+    fontSize: '$sm',
+    fontWeight: 700,
+    lineHeight: 1.6,
+    color: '$green500',
+    cursor: 'pointer',
+
+    '&:hover': {
+      color: '$green300',
+    }
+  },
 })
