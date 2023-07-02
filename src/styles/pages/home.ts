@@ -75,6 +75,10 @@ export const BagContainer = styled(IconContainer, {
   backgroundColor: '$green500',
 
   svg: {
-    color: 'white'
-  }
+    color: 'white',
+  },
+
+  '&:hover': {
+    opacity: 0.7,
+  },
 })

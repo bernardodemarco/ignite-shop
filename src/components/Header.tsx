@@ -5,10 +5,11 @@ import { Handbag } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Cart } from "./Cart";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false)
-  const number = 4
+  const number = 0
   const { pathname } = useRouter()
 
   function handleOpenCart() {
@@ -20,12 +21,15 @@ export function Header() {
   }
 
   const isIconVisible = pathname !== '/success'
+  const isProductsAmountVisible = number !== 0
 
   return (
     <>
       <HeaderContainer isIconVisible={isIconVisible}>
-        <Image src={logoImg} alt="" />
-        <IconContainer onClick={handleOpenCart}>
+        <Link href={'/'}>
+          <Image src={logoImg} alt="" />
+        </Link>
+        <IconContainer isProductsAmountVisible={isProductsAmountVisible} onClick={handleOpenCart}>
           <Handbag size={24} weight="bold" />
           {number > 0 && <span>{number}</span>}
         </IconContainer>

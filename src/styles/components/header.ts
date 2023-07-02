@@ -29,6 +29,27 @@ export const HeaderContainer = styled('header', {
 })
 
 export const IconContainer = styled('div', {
+  variants: {
+    isProductsAmountVisible: {
+      true: {
+        svg: {
+          color: '$gray300',
+        },
+        span: {
+          display: 'flex',
+        },
+      },
+      false: {
+        svg: {
+          color: '#8D8D99',
+        },
+        span: {
+          display: 'none',
+        },
+      },
+    },
+  },
+
   cursor: 'pointer',
   position: 'relative',
   width: '3rem',
@@ -48,13 +69,12 @@ export const IconContainer = styled('div', {
 
   span: {
     position: 'absolute',
-    top: '-0.4375rem',
-    right: '-0.4375rem',
+    top: '-0.6rem',
+    right: '-0.6rem',
 
-    width: '1.5rem',
-    height: '1.5rem',
+    width: '1.625rem',
+    height: '1.625rem',
 
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
 
