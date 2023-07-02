@@ -29,6 +29,10 @@ export const CartContainer = styled('section', {
 
   transition: 'transform 0.5s cubic-bezier(0.950, -0.005, 0.300, 0.995)',
 
+  '::selection': {
+    backgroundColor: '$gray900',
+  },
+
   svg: {
     position: 'absolute',
     top: '1.5rem',
@@ -113,7 +117,7 @@ export const CartContainer = styled('section', {
 
   '@media screen and (max-width: 380px)': {
     padding: '1.75rem 1rem'
-  }
+  },
 })
 
 

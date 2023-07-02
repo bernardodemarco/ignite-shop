@@ -19,6 +19,6 @@ export const globalStyles = globalCss({
   },
 
   '::selection': {
-    backgroundColor: '$gray300',
+    backgroundColor: '$gray800',
   },
 })
