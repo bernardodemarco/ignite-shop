@@ -5,6 +5,7 @@ interface ProductType {
   name: string
   imageUrl: string
   price: string
+  unitAmount: number
   defaultPriceId: string
 }
 

@@ -1,10 +1,9 @@
+import { useCartContext } from "@/hooks/useCartContext"
 import { stripe } from "@/lib/stripe"
 import { ProductContainer, ImageContainer, ProductDetails } from "@/styles/pages/product"
-import axios from "axios"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
-import { useState } from "react"
 import Stripe from "stripe"
 
 interface ProductProps {
@@ -15,25 +14,15 @@ interface ProductProps {
     price: string
     description: string
     defaultPriceId: string
+    unitAmount: number
   }
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+  const { addProductToCart } = useCartContext()
 
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSession(true)
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId
-      })
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-    } catch (err) {
-      setIsCreatingCheckoutSession(false)
-      alert('falha ao redirecionar ao checkout')
-    }
+  function handleAddProduct() {
+    addProductToCart(product)
   }
 
   return (
@@ -57,7 +46,7 @@ export default function Product({ product }: ProductProps) {
           <h1>{product.name}</h1>
           <span>{product.price}</span>
           <p>{product.description}</p>
-          <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>Colocar na sacola</button>
+          <button onClick={handleAddProduct}>Colocar na sacola</button>
         </ProductDetails>
       </ProductContainer>
     </>
@@ -95,6 +84,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         }).format(unitAmount / 100),
         description: product.description,
         defaultPriceId: price.id,
+        unitAmount,
       }
     },
     revalidate: 2 * 60 * 60,
