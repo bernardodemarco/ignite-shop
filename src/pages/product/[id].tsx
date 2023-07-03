@@ -57,11 +57,18 @@ export default function Product({ product }: ProductProps) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await stripe.products.list()
+  const paths = response.data.map((product) => {
+    return {
+      params: {
+        id: product.id,
+      },
+    }
+  })
+
   return {
-    paths: [
-      { params: { id: 'prod_O7nETxSyytyYwL' } }
-    ],
+    paths,
     fallback: 'blocking',
   }
 }
