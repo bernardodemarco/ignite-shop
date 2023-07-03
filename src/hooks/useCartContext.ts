@@ -1,4 +1,4 @@
-import { CartContext } from "@/pages/contexts/CartContext";
+import { CartContext } from "@/contexts/CartContext";
 import { useContext } from "react";
 
 export function useCartContext() {

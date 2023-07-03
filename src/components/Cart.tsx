@@ -2,6 +2,8 @@ import { useCartContext } from "@/hooks/useCartContext";
 import { CartContainer, ImageContainer, Product, ProductDetails } from "@/styles/components/cart";
 import { X } from '@phosphor-icons/react'
 import Image from "next/image";
+import { useState } from "react";
+import axios from 'axios'
 
 interface CartProps {
   onCloseCart: () => void
@@ -9,24 +11,27 @@ interface CartProps {
 }
 
 export function Cart({ onCloseCart, isCartVisible }: CartProps) {
-  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-
-  // async function handleBuyProduct() {
-  //   try {
-  //     setIsCreatingCheckoutSession(true)
-  //     const response = await axios.post('/api/checkout', {
-  //       priceId: product.defaultPriceId
-  //     })
-  //     const { checkoutUrl } = response.data
-
-  //     window.location.href = checkoutUrl
-  //   } catch (err) {
-  //     setIsCreatingCheckoutSession(false)
-  //     alert('falha ao redirecionar ao checkout')
-  //   }
-  // }
-
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
   const { products, removeProductFromCart } = useCartContext()
+
+  async function handleBuyProducts() {
+    try {
+      setIsCreatingCheckoutSession(true)
+      const purchasedProducts = products.map((product) => {
+        return {
+          price: product.defaultPriceId,
+          quantity: 1,
+        }
+      })
+      const response = await axios.post('/api/checkout', { purchasedProducts })
+
+      const { checkoutUrl } = response.data
+      window.location.href = checkoutUrl
+    } catch (err) {
+      setIsCreatingCheckoutSession(false)
+      alert('falha ao redirecionar ao checkout')
+    }
+  }
 
   function handleCloseCart() {
     onCloseCart()
@@ -74,7 +79,9 @@ export function Cart({ onCloseCart, isCartVisible }: CartProps) {
         <strong>Valor total</strong>
         <strong>{totalPrice}</strong>
       </div>
-      <button>Finalizar compra</button>
+      <button onClick={handleBuyProducts} disabled={isCreatingCheckoutSession}>
+        Finalizar compra
+      </button>
     </CartContainer>
   )
 }

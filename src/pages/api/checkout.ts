@@ -1,6 +1,13 @@
 import { stripe } from "@/lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
+interface BodyType {
+  purchasedProducts: {
+    price: string
+    quantity: number
+  }[]
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({
@@ -8,11 +15,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
   }
 
-  const { priceId } = req.body
+  const { purchasedProducts }: BodyType = req.body
 
-  if (!priceId) {
+  if (purchasedProducts.length === 0) {
     res.status(400).json({
-      error: 'Price not found.'
+      error: 'Prices were not found.'
     })
   }
 
@@ -23,12 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     mode: 'payment',
     success_url: successUrl,
     cancel_url: cancelUrl,
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1
-      }
-    ]
+    line_items: purchasedProducts
   })
 
   return res.status(201).json({
