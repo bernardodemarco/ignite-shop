@@ -25,8 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`
   // const cancelUrl = `${process.env.NEXT_URL}/`
-  const successUrl = `https://ignite-shop-bernardodemarco.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`
-  const cancelUrl = `https://ignite-shop-bernardodemarco.vercel.app/`
+  const successUrl = `https://ignite-shop-bernardodemarco.netlify.app/success?session_id={CHECKOUT_SESSION_ID}`
+  const cancelUrl = `https://ignite-shop-bernardodemarco.netlify.app/`
 
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: 'payment',
