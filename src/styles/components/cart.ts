@@ -1,6 +1,10 @@
 import { styled } from '@stitches/react'
 
 export const CartContainer = styled('section', {
+  defaultVariants: {
+    isCartVisible: false
+  },
+
   variants: {
     isCartVisible: {
       true: {
