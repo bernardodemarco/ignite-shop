@@ -12,7 +12,11 @@ On the application's main page, the user can navigate through all available prod
 
 ![product-details](https://github.com/bernardodemarco/ignite-shop/assets/115510880/e1dbe19e-11c3-4c7e-bf6a-bdc47a7a708d)
 
-The user can view the cart status by clicking on the bag icon. In the cart, the number of items and the total price are displayed. When the user clicks on the button to complete the purchase, they are redirected to the [Stripe](https://stripe.com/en-br) custom page. If the payment is successfully completed, the user is redirected to a success page.
+The user can view the cart status by clicking on the bag icon. In the cart, the number of items and the total price are displayed.
+
+![cart](https://github.com/bernardodemarco/ignite-shop/assets/115510880/0b1f984c-4b0e-430b-a6bb-5e832d7dc225)
+
+When the user clicks on the button to complete the purchase, they are redirected to the [Stripe](https://stripe.com/en-br) custom page. If the payment is successfully completed, the user is redirected to a success page.
 
 ![success-page](https://github.com/bernardodemarco/ignite-shop/assets/115510880/a7c7c82e-6e63-401a-b240-56e9a1be295e)
 
