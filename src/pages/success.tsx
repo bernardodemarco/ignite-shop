@@ -46,7 +46,6 @@ export default function Success({ imagesUrls, customerName }: SuccessProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  console.log(query)
   if (!query.session_id) {
     return {
       redirect: {
