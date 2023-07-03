@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import { GetStaticProps } from 'next'
+import Image from 'next/image'
+import Head from 'next/head'
 
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
@@ -8,8 +9,9 @@ import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
 
 import { BagContainer, HomeContainer, Product } from '@/styles/pages/home'
-import Head from 'next/head'
 import { Handbag } from '@phosphor-icons/react'
+
+import { priceFormatter } from '@/utils/priceFormatter'
 
 interface HomeProps {
   products: {
@@ -30,10 +32,10 @@ export default function Home({ products }: HomeProps) {
     breakpoints: {
       '(max-width: 612px)': {
         slides: {
-          spacing: 30
-        }
-      }
-    }
+          spacing: 30,
+        },
+      },
+    },
   })
 
   return (
@@ -42,20 +44,20 @@ export default function Home({ products }: HomeProps) {
         <title>Home | Ignite Shop</title>
       </Head>
 
-      <HomeContainer ref={sliderRef} className='keen-slider'>
+      <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map((product) => {
           return (
             <Product
-              href={`/product/${product.id}`}
-              className='keen-slider__slide'
+              className="keen-slider__slide"
               key={product.id}
+              href={`/product/${product.id}`}
               prefetch={false}
             >
               <Image
                 src={product.imageUrl}
                 width={520}
                 height={480}
-                alt=''
+                alt=""
                 priority={true}
               />
               <footer>
@@ -64,7 +66,7 @@ export default function Home({ products }: HomeProps) {
                   <span>{product.price}</span>
                 </div>
                 <BagContainer>
-                  <Handbag size={32} weight='bold' />
+                  <Handbag size={32} weight="bold" />
                 </BagContainer>
               </footer>
           </Product>
@@ -89,10 +91,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      }).format(unitAmount / 100),
+      price: priceFormatter.format(unitAmount / 100),
     }
   })
 

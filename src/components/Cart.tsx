@@ -1,8 +1,10 @@
-import { useCartContext } from "@/hooks/useCartContext";
-import { CartContainer, ImageContainer, Product, ProductDetails } from "@/styles/components/cart";
+import { useState } from 'react'
+import { useCartContext } from '@/hooks/useCartContext'
+
 import { X } from '@phosphor-icons/react'
-import Image from "next/image";
-import { useState } from "react";
+import { CartContainer, ImageContainer, Product, ProductDetails } from '@/styles/components/cart'
+
+import Image from 'next/image'
 import axios from 'axios'
 
 interface CartProps {
@@ -29,7 +31,6 @@ export function Cart({ onCloseCart, isCartVisible }: CartProps) {
       window.location.href = checkoutUrl
     } catch (err) {
       setIsCreatingCheckoutSession(false)
-      alert('falha ao redirecionar ao checkout')
     }
   }
 

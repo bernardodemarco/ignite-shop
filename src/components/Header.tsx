@@ -1,12 +1,14 @@
-import Image from "next/image";
+import { useState } from 'react'
+import { useCartContext } from '@/hooks/useCartContext'
+import { useRouter } from 'next/router'
+
+import { HeaderContainer, IconContainer } from '@/styles/components/header'
+import { Handbag } from '@phosphor-icons/react'
+import { Cart } from './Cart'
+
+import Link from 'next/link'
+import Image from 'next/image'
 import logoImg from './../assets/logo.svg'
-import { HeaderContainer, IconContainer } from "@/styles/components/header";
-import { Handbag } from "@phosphor-icons/react";
-import { useState } from "react";
-import { Cart } from "./Cart";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { useCartContext } from "@/hooks/useCartContext";
 
 export function Header() {
   const [isCartVisible, setIsCartVisible] = useState(false)
@@ -28,7 +30,7 @@ export function Header() {
   return (
     <>
       <HeaderContainer isIconVisible={isIconVisible}>
-        <Link href={'/'}>
+        <Link href="/">
           <Image src={logoImg} alt="" />
         </Link>
         <IconContainer isProductsAmountVisible={isProductsAmountVisible} onClick={handleOpenCart}>

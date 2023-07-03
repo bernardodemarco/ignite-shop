@@ -1,12 +1,12 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useState } from 'react'
 
 interface ProductType {
   id: string
+  defaultPriceId: string
   name: string
   imageUrl: string
   price: string
   unitAmount: number
-  defaultPriceId: string
 }
 
 interface CartContextType {

@@ -1,29 +1,28 @@
-import { stripe } from "@/lib/stripe";
-import { SuccessContainer, ImageContainer, ImagesWrapper } from "@/styles/pages/success";
-import { GetServerSideProps } from "next";
-import Head from "next/head"
-import Link from "next/link";
-import Image from "next/image";
-import Stripe from "stripe";
+import Stripe from 'stripe'
+import { stripe } from '@/lib/stripe'
+
+import { SuccessContainer, ImageContainer, ImagesWrapper } from '@/styles/pages/success'
+
+import { GetServerSideProps } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import Image from 'next/image'
 
 interface SuccessProps {
-  customerName: string
   imagesUrls: string[]
+  customerName: string
 }
 
-export default function Success({ customerName, imagesUrls }: SuccessProps) {
+export default function Success({ imagesUrls, customerName }: SuccessProps) {
   const numOfProducts = imagesUrls.length
 
   return (
     <>
       <Head>
         <title>Compra efetuada | Ignite Shop</title>
-
         <meta name="robots" content="noindex" />
       </Head>
-
       <SuccessContainer>
-
         <ImagesWrapper>
           {imagesUrls.map((url) => {
             return (
@@ -33,15 +32,12 @@ export default function Success({ customerName, imagesUrls }: SuccessProps) {
             )
           })}
         </ImagesWrapper>
-
         <h1>Compra efetuada</h1>
-
         <p>
           Uhuul <strong>{customerName}</strong>, sua compra
           de {numOfProducts} camisetas já está a caminho de sua casa.
         </p>
-
-        <Link href={'/'}>
+        <Link href="/">
           Voltar ao catálogo
         </Link>
       </SuccessContainer>
@@ -75,8 +71,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   return {
     props: {
-      customerName,
       imagesUrls,
+      customerName,
     }
   }
 }
